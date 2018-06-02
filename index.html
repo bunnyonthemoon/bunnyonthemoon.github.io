@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Title</title>
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/main.min.css">
+	<style>
+		html{
+			background-color: #000611;
+		}
+	</style>
+</head>
+
+<body class="night">
+
+	<div class="nav-item logo">
+		<p class="nav-item-text">bunnyonthemoon</p>
+	</div>
+
+	<div class="nav-item" data-goto="about">
+			<p class="nav-item-text">Обо мне</p>
+	</div>
+	<div class="nav-item" data-goto="works">
+			<p class="nav-item-text">Работы</p>
+	</div>
+	<!-- <div class="nav-item" data-goto="order">
+			<p class="nav-item-text">Заказ</p>
+	</div> -->
+	<div class="nav-item" data-goto="contacts">
+			<p class="nav-item-text">Контакты</p>
+	</div>
+
+
+	<div class="nav-options">
+		<div class="nav-select" data-select="theme">
+			<span class="nav-option active" data-theme="night">night</span>
+			<span class="nav-option" data-theme="whiteboard">whiteboard</span>
+		</div>
+	</div>
+
+
+	<div class="inner" id="inner"></div>
+
+	<canvas id="pixie"></canvas>
+
+<script src="js/scripts.min.js"></script>
+</body>
+</html>

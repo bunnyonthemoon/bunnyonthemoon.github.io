@@ -1,0 +1,20 @@
+<section class="page">
+  <div class="order">
+    <h4 class="order-h">Оставить заявку</h4>
+    <span class="order-success">Спасибо за заявку</span>
+
+    <form action="input" id="order-form"class="order-form">
+
+      <input type="hidden" name="project_name" value="bunnyonthemoon">
+      <input type="hidden" name="admin_email" value="kobenko.evgeny@gmail.com">
+      <input type="hidden" name="form_subject" value="Order_on_bunnyonthemoon">
+
+      <input type="text" name="Name"class="order-form-input" placeholder="Имя" required>
+      <input type="email"name="E-mail"class="order-form-input"aria-describedby="emailHelp"placeholder="Адрес электронной почты"required>
+      <input type="text" name="Phone"class="order-form-input" placeholder="Телефонный номер"required>
+      <textarea type="text" name="Description"class="order-form-input" placeholder="Краткое описание заявки" rows="3"></textarea>
+      <button class="order-form-button">Отправить</button>
+
+    </form>
+  </div>
+</section>
