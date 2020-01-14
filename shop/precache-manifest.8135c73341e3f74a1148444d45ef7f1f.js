@@ -4,12 +4,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop/css/chunk-0bfdaa3a.fcba48be.css"
   },
   {
-    "revision": "dd41b87bb3b4df8587af",
-    "url": "/shop/css/chunk-4475bce5.60f1d2a4.css"
+    "revision": "48466c85b3444ae33de9",
+    "url": "/shop/css/chunk-3990c900.8f73b832.css"
   },
   {
-    "revision": "283c202e35b538cafd76",
-    "url": "/shop/css/chunk-554e2c80.c7dc6a9a.css"
+    "revision": "dd41b87bb3b4df8587af",
+    "url": "/shop/css/chunk-4475bce5.60f1d2a4.css"
   },
   {
     "revision": "6bd72c89ea4ebdd783e3",
@@ -36,8 +36,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop/css/chunk-vendors.bd3f40ae.css"
   },
   {
-    "revision": "d4cbab6e9cad9c7c1f09",
-    "url": "/shop/css/index.5f770264.css"
+    "revision": "bb67e3af0b9776ba4bf9",
+    "url": "/shop/css/index.43783b8b.css"
   },
   {
     "revision": "fd22baf51cbcd60e7017efbaa9a144ba",
@@ -516,7 +516,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop/img/vk.svg"
   },
   {
-    "revision": "0a0224a7962a6ae138b879e103821cc3",
+    "revision": "5dcef1399a9af967e0ffdf8316f87011",
     "url": "/shop/index.html"
   },
   {
@@ -524,12 +524,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop/js/chunk-0bfdaa3a.63a5f2f4.js"
   },
   {
-    "revision": "dd41b87bb3b4df8587af",
-    "url": "/shop/js/chunk-4475bce5.18c94c58.js"
+    "revision": "48466c85b3444ae33de9",
+    "url": "/shop/js/chunk-3990c900.725a70c0.js"
   },
   {
-    "revision": "283c202e35b538cafd76",
-    "url": "/shop/js/chunk-554e2c80.c92ccd96.js"
+    "revision": "dd41b87bb3b4df8587af",
+    "url": "/shop/js/chunk-4475bce5.18c94c58.js"
   },
   {
     "revision": "6bd72c89ea4ebdd783e3",
@@ -556,8 +556,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/shop/js/chunk-vendors.62b5eacc.js"
   },
   {
-    "revision": "d4cbab6e9cad9c7c1f09",
-    "url": "/shop/js/index.1d62a1b4.js"
+    "revision": "bb67e3af0b9776ba4bf9",
+    "url": "/shop/js/index.b45a63cb.js"
   },
   {
     "revision": "882f04bb80a9d12eb94090078504ef2e",
