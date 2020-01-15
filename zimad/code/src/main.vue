@@ -44,6 +44,7 @@ export default {
 			this.values[1] = String(this.values[1]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
 		},
 		showError(text){
+			console.log(text)
 			this.error = text
 		}
 	},
@@ -51,7 +52,7 @@ export default {
 		sum(){
 			if (!this.activeFunc) return 0
 
-			let error = false
+			let isError = false
 			if (this.activeFunc.error)
 				for (let error of this.activeFunc.error){
 
@@ -62,9 +63,9 @@ export default {
 
 					this.showError(error.alertText)
 					if (!error.calc) return 'Ошибка'
-					error = true
+					isError = true
 				}
-			if (!error) this.showError(null)
+			if (!isError) this.showError(null)
 
 			let calc = this.activeFunc.function.replace(/\$1/g, this.values[0])
 			calc = calc.replace(/\$2/g, this.values[1])
