@@ -6,10 +6,10 @@
 			.control-btn(v-for="item in functions" @click="activeFunc = item" :class="{active: activeFunc.name == item.name}") {{item.name}}
 		.input
 			span $1:
-			input(v-model="values[0]" @input="format")
+			input(v-model="values[0]" @input="format(0)")
 		.input
 			span $2:
-			input(v-model="values[1]" @input="format")
+			input(v-model="values[1]" @input="format(1)")
 		.sum Cумма: {{ sum }}
 		.error(v-if="error") {{ error }}
 
@@ -39,12 +39,10 @@ export default {
 			this.functions = data.functions
 			this.activeFunc = this.functions[data.default]
 		},
-		format(){
-			this.values[0] = String(this.values[0]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
-			this.values[1] = String(this.values[1]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
+		format(id){
+			this.values[id] = String(this.values[id]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
 		},
 		showError(text){
-			console.log(text)
 			this.error = text
 		}
 	},
