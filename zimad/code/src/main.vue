@@ -1,14 +1,17 @@
 <template lang="pug">
 
 #app
-	.functions
-		.functions-btn(v-for="(item, ID) in functions" @click="activeFunc = ID" :class="{active: activeFunc == ID}") {{item.name}}
-	| $1:
-	input(v-model="value[0]")
-
-	| $2:
-	input(v-model="value[1]")
-	.sum сумма: {{ sum }}
+	.form
+		.control
+			.control-btn(v-for="item in functions" @click="activeFunc = item" :class="{active: activeFunc.name == item.name}") {{item.name}}
+		.input
+			span $1:
+			input(v-model="values[0]" @input="format")
+		.input
+			span $2:
+			input(v-model="values[1]" @input="format")
+		.sum Cумма: {{ sum }}
+		.error(v-if="error") {{ error }}
 
 </template>
 
@@ -21,59 +24,49 @@ export default {
 	},
 	data(){
 		return {
-			value: [
+			values: [
 				0,
 				0
 			],
-			activeFunc: '',
-			functions: {}
+			activeFunc: null,
+			functions: {},
+			error: null
 		}
 	},
 	methods: {
 		async loadFunctions(){
-			let { data } = await Axios.get('settings.json', {
-				method: 'GET',
-				mode: 'no-cors',
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-					'Content-Type': 'application/json',
-				},
-				withCredentials: true,
-				credentials: 'same-origin',
-			})
+			let { data } = await Axios.get('settings.json')
 			this.functions = data.functions
-			this.activeFunc = data.default
+			this.activeFunc = this.functions[data.default]
+		},
+		format(){
+			this.values[0] = String(this.values[0]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
+			this.values[1] = String(this.values[1]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
+		},
+		showError(text){
+			this.error = text
 		}
 	},
 	computed:{
 		sum(){
-			if (this.activeFunc == '') return 0
+			if (!this.activeFunc) return 0
 
-			let activeFunc = this.functions[this.activeFunc]
+			if (this.activeFunc.error)
+				for (let error of this.activeFunc.error){
 
-			activeFunc.error = activeFunc.error || []
-			for (let error of activeFunc.error){
+					if ((error.target == '$1' && this.values[0] != error.value)) continue
+					if ((error.target == '$2' && this.values[1] != error.value)) continue
+					if ((error.target == 'any' && this.values[0] != error.value && this.values[1] != error.value)) continue
+					if ((error.target == 'both' && (this.values[0] != error.value || this.values[1] != error.value))) continue
 
-				if ((error.valueID == '0' && this.value[0] != error.value)) continue
-				if ((error.valueID == '1' && this.value[1] != error.value)) continue
-				if ((error.valueID == 'any' && this.value[0] != error.value && this.value[1] != error.value)) continue
-				if ((error.valueID == 'both' && (this.value[0] != error.value || this.value[1] != error.value))) continue
-
-				alert(error.alertText)
-				if (!error.calc) return 'Ошибка'
-			}
-				
-
-			let calc = activeFunc.function.replace(/\$1/g, this.value[0])
-			calc = calc.replace(/\$2/g, this.value[1])
-			return eval(calc)
-		}
-	},
-	watch: {
-		value(val) {
-			val[0] = String(val[0]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
-			val[1] = String(val[1]).split(' ').join('').replace(/[^-0-9]/gim, '') * 1
+					this.showError(error.alertText)
+					if (!error.calc) return 'Ошибка'
+				}
+			this.showError(null)
 			
+			let calc = this.activeFunc.function.replace(/\$1/g, this.values[0])
+			calc = calc.replace(/\$2/g, this.values[1])
+			return eval(calc)
 		}
 	}
 }
@@ -81,31 +74,37 @@ export default {
 </script>
 
 <style lang="stylus">
-
-.functions
-	&-btn
-		display inline-block
-		background-color #ddd
-		border-radius 5px
+.form
+	padding-top 120px
+	display flex
+	align-items center
+	justify-content center
+	flex-direction column
+	.control
+		margin-bottom 30px
 		box-shadow 0 2px 6px 0 rgba(#000, .2)
-		padding 10px 15px
-		font-size 20px
-		margin 0 5px
-		cursor pointer
-		transition all .3s
-		&:hover
-			box-shadow 0 2px 4px 0 rgba(#000, .2)
-		&.active
-			background-color #19ff19
-	
-input
-	border 1px solid #aaa
-	font-size 18px
-	border-radius 3px
-	margin 10px
-	padding 3px 10px
+		&-btn
+			display inline-block
+			background-color #ddd
+			padding 10px 15px
+			font-size 20px
+			cursor pointer
+			transition all .3s
+			&:hover
+				box-shadow 0 2px 4px 0 rgba(#000, .2)
+			&.active
+				background-color #19ff19
+	.input
+		span
+			font-size 20px
+		input
+			border 1px solid #aaa
+			font-size 18px
+			border-radius 3px
+			margin 10px
+			padding 3px 10px
 
-.sum
-	font-size 30px
+	.sum
+		font-size 30px
 
 </style>
