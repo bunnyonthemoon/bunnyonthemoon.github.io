@@ -1,5 +1,5 @@
 {
-	"default": "-",
+	"default": "+",
 	"functions": {
 		"+": {
 			"name": "+",
