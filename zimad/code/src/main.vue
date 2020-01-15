@@ -51,6 +51,7 @@ export default {
 		sum(){
 			if (!this.activeFunc) return 0
 
+			let error = false
 			if (this.activeFunc.error)
 				for (let error of this.activeFunc.error){
 
@@ -61,9 +62,10 @@ export default {
 
 					this.showError(error.alertText)
 					if (!error.calc) return 'Ошибка'
+					error = true
 				}
-			this.showError(null)
-			
+			if (!error) this.showError(null)
+
 			let calc = this.activeFunc.function.replace(/\$1/g, this.values[0])
 			calc = calc.replace(/\$2/g, this.values[1])
 			return eval(calc)
